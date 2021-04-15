@@ -30,7 +30,18 @@ let persons = [
 
 morgan.token('jsonBody', (req, res) => JSON.stringify(req.body))
 
-app.use(morgan('tiny'))
+const morganLogger = morgan(function (tokens, req, res) {
+  return [
+    tokens.method(req, res),
+    tokens.url(req, res),
+    tokens.status(req, res),
+    tokens.res(req, res, 'content-length'), '-',
+    tokens['response-time'](req, res), 'ms',
+    tokens['jsonBody'](req, res)
+  ].join(' ')
+})
+
+app.use(morganLogger)
 
 app.get('/', (request, response) => {
   response.send('<h1>Go to /api/persons to see what you\'re looking for</h1>')
