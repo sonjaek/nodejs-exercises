@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-exercises",
+  "version": "1.0.0",
+  "description": "Part 3 of Full Stack Open by University of Helsinki",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iosonja/nodejs-exercises.git"
+  },
+  "author": "Sonja Ek",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iosonja/nodejs-exercises/issues"
+  },
+  "homepage": "https://github.com/iosonja/nodejs-exercises#readme"
+}
