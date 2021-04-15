@@ -62,21 +62,28 @@ app.delete('/api/persons/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
+  const names = persons.map(person => person.name)
 
   if (!body.name) {
     return response.status(400).json({ 
       error: 'name missing' 
     })
+  } else if (!body.number) {
+    return response.status(400).json({ 
+      error: 'number missing' 
+    })
+  } else if (names.includes(body.name)) {
+    return response.status(400).json({ 
+      error: 'the person has already been added to the phonebook' 
+    })
   }
 
   const person = {
     name: body.name,
-    number: body.number || "-",
+    number: body.number,
     id: Math.floor(Math.random()*100000),
   }
-
   persons = persons.concat(person)
-
   response.json(person)
 })
 
