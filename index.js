@@ -67,14 +67,9 @@ app.get('/info', (request, response) => {
 })
 
 app.get('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const person = persons.find(person => person.id === id)
-  
-  if (person) {
+  Note.findById(request.params.id).then(person => {
     response.json(person)
-  } else {
-    response.status(404).end()
-  }
+  })
 })
 
 app.delete('/api/persons/:id', (request, response) => {
@@ -107,8 +102,9 @@ app.post('/api/persons', (request, response) => {
     number: body.number,
     id: Math.floor(Math.random()*100000),
   }
-  persons = persons.concat(person)
-  response.json(person)
+  person.seve().then(savedPerson => {
+    response.json(savedPerson)
+  })
 })
 
 const unknownEndpoint = (request, response) => {
