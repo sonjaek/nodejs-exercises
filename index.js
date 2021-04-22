@@ -1,10 +1,10 @@
 require('dotenv').config()
 const express = require('express')
+const app = express()
 const morgan = require('morgan')
 const cors = require('cors')
 const Person = require('./models/person')
 
-const app = express()
 
 app.use(express.json())
 app.use(express.static('build'))
@@ -97,14 +97,15 @@ app.post('/api/persons', (request, response) => {
     })
   }
 
-  const person = {
+  const person = new Person({
     name: body.name,
     number: body.number,
     id: Math.floor(Math.random()*100000),
-  }
-  person.seve().then(savedPerson => {
-    response.json(savedPerson)
   })
+
+  person.save()
+  .then(savedPerson => savedPerson.toJSON())
+  .then(savedJSONPerson => response.json(savedJSONPerson))
 })
 
 const unknownEndpoint = (request, response) => {
