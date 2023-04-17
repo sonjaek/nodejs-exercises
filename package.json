@@ -1,0 +1,11 @@
+{
+  "name": "nodejs-exercises",
+  "version": "0.0.1",
+  "description": "Third part of Full Stack Open by University of Helsinki.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sonja Ek",
+  "license": "MIT"
+}
