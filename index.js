@@ -8,17 +8,17 @@ let contactInfo = [
     number: "040-6770976",
   },
   {
-    id: 1,
+    id: 2,
     name: "Ronja Ek",
     number: "040-6776976",
   },
   {
-    id: 1,
+    id: 3,
     name: "Sonya Ek",
     number: "040-6779936",
   },
   {
-    id: 1,
+    id: 4,
     name: "Sorja Ek",
     number: "040-6779976",
   },
@@ -30,6 +30,17 @@ app.get("/info", (req, res) => {
 
 app.get("/api/persons", (req, res) => {
   res.json(contactInfo)
+})
+
+app.get('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  const note = contactInfo.find(note => note.id === id)
+
+  if (note) {
+    response.json(note)
+  } else {
+    response.status(404).end()
+  }
 })
 
 const PORT = 3001
